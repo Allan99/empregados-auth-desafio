@@ -1,12 +1,8 @@
 package com.devsuperior.demo.entities;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,16 +14,14 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name = "tb_user")
-public class User implements UserDetails{
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String firstName;
-	private String lastName;
+	private String name;
 	
 	@Column(unique = true)
 	private String email;
@@ -42,13 +36,14 @@ public class User implements UserDetails{
 	public User() {
 	}
 
-	public User(Long id, String firstName, String lastName, String email, String password) {
+
+	public User(Long id, String name, String email, String password, Set<Role> roles) {
 		super();
 		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.setName(name);
 		this.email = email;
 		this.password = password;
+		this.roles = roles;
 	}
 
 	public Long getId() {
@@ -57,22 +52,6 @@ public class User implements UserDetails{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getEmail() {
@@ -111,16 +90,6 @@ public class User implements UserDetails{
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return roles;
-	}
-
-	@Override
-	public String getUsername() {
-		return email;
-	}
 	
 	public void addRole(Role role) {
 		roles.add(role);
@@ -133,5 +102,15 @@ public class User implements UserDetails{
 			}
 		}
 		return false;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
