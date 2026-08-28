@@ -53,5 +53,14 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/allan/snap/eclipse/common/.m2/repository/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar" sourcepath="/home/allan/snap/eclipse/common/.m2/repository/org/jspecify/jspecify/1.0.0/jspecify-1.0.0-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.jspecify"/>
+			<attribute name="maven.artifactId" value="jspecify"/>
+			<attribute name="maven.version" value="1.0.0"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
